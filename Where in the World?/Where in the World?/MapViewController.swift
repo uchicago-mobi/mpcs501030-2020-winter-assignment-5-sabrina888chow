@@ -86,6 +86,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func markFavoriteButtonPressed(_ sender: UIButton) {
+        if locationTitle.text == "A Look at Chicago" {
+            return
+        }
         if favoriteButton.isSelected {
             favoriteButton.isSelected = false
             DataManager.sharedInstance.deleteFavorite(currentPlace: currentPlace.name!)

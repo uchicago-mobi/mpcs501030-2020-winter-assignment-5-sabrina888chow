@@ -16,6 +16,6 @@ class PlaceMarkerView: MKMarkerAnnotationView {
           displayPriority = .defaultLow
           markerTintColor = .systemRed
           glyphImage = UIImage(systemName: "pin.fill")
-          }
+        }
     }
 }
