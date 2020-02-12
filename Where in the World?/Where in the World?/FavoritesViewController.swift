@@ -58,7 +58,7 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate!.selectedFavoritePlace(place: annotations[indexPath.row])
+        delegate!.selectedFavoritePlace(place: favorites[indexPath.row])
         // https://developer.apple.com/documentation/uikit/uiviewcontroller/1621505-dismiss
         dismiss(animated: true, completion: nil)
     }
