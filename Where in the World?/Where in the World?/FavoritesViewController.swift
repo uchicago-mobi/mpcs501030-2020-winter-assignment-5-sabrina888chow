@@ -21,12 +21,12 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     weak var delegate: PlacesFavoritesDelegate?
     
     var annotations: [Place] = []
+    var favorites: [Place] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -34,17 +34,26 @@ class FavoritesViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return annotations.count
+        return favorites.count
     }
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "subtitleStyle", for: indexPath)
         
-        let annotation = annotations[indexPath.row]
+        let titles = DataManager.sharedInstance.listFavorites()
         
-        cell.textLabel?.text = annotation.title
-        cell.detailTextLabel?.text = annotation.subtitle
+        for title in titles {
+            for annotation in annotations {
+                if title == annotation.title {
+                    favorites.append(annotation)
+                }
+            }
+        }
+        
+        let currentFavorite = favorites[indexPath.row]
+        cell.textLabel?.text = currentFavorite.title
+        cell.detailTextLabel?.text = currentFavorite.subtitle
         
         return cell
     }

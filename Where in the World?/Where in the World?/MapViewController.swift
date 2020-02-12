@@ -25,6 +25,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // values come approximately from this source but adjusted for my purposes:
+        // https://en.wikipedia.org/wiki/Module:Location_map/data/United_States_Chicago
         let chicagoLongLat = CLLocationCoordinate2D(latitude: 41.8781, longitude: -87.6298)
         let chicagoSpan = MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.25)
         mapView.region = MKCoordinateRegion(center: chicagoLongLat, span: chicagoSpan)
@@ -56,23 +58,40 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        locationTitle.text = (view.annotation?.title)!
-        locationDescription.text = (view.annotation?.subtitle)!
+        guard let annotation = view.annotation as? Place else { return }
+        
+        locationTitle.text = annotation.name
+        locationDescription.text = annotation.longDescription
+        
+        if isFavorite(place: annotation) {
+            favoriteButton.isSelected = true
+        } else {
+            favoriteButton.isSelected = false
+        }
         
         if let place = view.annotation as? Place {
             currentPlace = place
         }
     }
     
+    func isFavorite(place: Place) -> Bool {
+        let names = DataManager.sharedInstance.listFavorites()
+        for name in names {
+            if place.name == name {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
     @IBAction func markFavoriteButtonPressed(_ sender: UIButton) {
-        //let filledStar = UIImage(systemName: "star.fill")
-        //favoriteButton.setImage(filledStar, for: .normal)
         if favoriteButton.isSelected {
             favoriteButton.isSelected = false
-            DataManager.sharedInstance.deleteFavorite(place: currentPlace)
+            DataManager.sharedInstance.deleteFavorite(currentPlace: currentPlace.name!)
         } else {
             favoriteButton.isSelected = true
-            DataManager.sharedInstance.saveFavorite(place: currentPlace)
+            DataManager.sharedInstance.saveFavorite(currentPlace: currentPlace.name!)
         }
     }
     
@@ -84,6 +103,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 }
 
+// https://iosdevcenters.blogspot.com/2017/11/what-is-protocol-how-to-pop-data-using.html
 extension MapViewController: PlacesFavoritesDelegate {
     func selectedFavoritePlace(place: Place) {
         mapView.selectAnnotation(place, animated: true)

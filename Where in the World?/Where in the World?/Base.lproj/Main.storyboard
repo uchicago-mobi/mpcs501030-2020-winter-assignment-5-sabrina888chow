@@ -22,20 +22,27 @@
                                 <rect key="frame" x="20" y="64" width="374" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAX-zi-Dz9">
-                                        <rect key="frame" x="342" y="10" width="22" height="22"/>
+                                        <rect key="frame" x="338" y="10" width="26" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="LIW-Um-54B"/>
+                                            <constraint firstAttribute="width" constant="26" id="ug0-LH-ByI"/>
+                                        </constraints>
                                         <state key="normal" image="star" catalog="system"/>
                                         <state key="selected" image="star.fill" catalog="system"/>
                                         <connections>
                                             <action selector="markFavoriteButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H6u-aJ-Ttw"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Look at Chicago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHI-Il-Jlw">
-                                        <rect key="frame" x="10" y="10" width="354" height="36"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="A Look at Chicago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHI-Il-Jlw">
+                                        <rect key="frame" x="10" y="10" width="318" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=compact">
+                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        </variation>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on any of the landmarks!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLz-t0-mLR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on any of the landmarks!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VLz-t0-mLR">
                                         <rect key="frame" x="10" y="49.5" width="354" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -44,16 +51,34 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="aAX-zi-Dz9" firstAttribute="leading" secondItem="wHI-Il-Jlw" secondAttribute="trailing" constant="10" id="1ae-6C-5jc"/>
                                     <constraint firstItem="wHI-Il-Jlw" firstAttribute="leading" secondItem="ziC-FN-DUa" secondAttribute="leading" constant="10" id="3w6-sp-sfV"/>
+                                    <constraint firstAttribute="trailing" secondItem="VLz-t0-mLR" secondAttribute="trailing" constant="10" id="8BU-KH-v28"/>
+                                    <constraint firstAttribute="height" constant="80" id="ADT-TS-dXu"/>
+                                    <constraint firstItem="VLz-t0-mLR" firstAttribute="top" secondItem="wHI-Il-Jlw" secondAttribute="bottom" constant="3.5" id="C8f-CG-2z0"/>
                                     <constraint firstItem="aAX-zi-Dz9" firstAttribute="top" secondItem="ziC-FN-DUa" secondAttribute="top" constant="10" id="GKJ-mI-25Y"/>
+                                    <constraint firstAttribute="width" constant="250" id="Jyb-5y-ZgX"/>
                                     <constraint firstItem="wHI-Il-Jlw" firstAttribute="top" secondItem="ziC-FN-DUa" secondAttribute="top" constant="10" id="K7j-s9-ciR"/>
-                                    <constraint firstAttribute="height" constant="80" id="U8f-0r-G8s"/>
-                                    <constraint firstItem="VLz-t0-mLR" firstAttribute="leading" secondItem="ziC-FN-DUa" secondAttribute="leading" constant="10" id="ZqT-eH-ODI"/>
-                                    <constraint firstAttribute="trailing" secondItem="VLz-t0-mLR" secondAttribute="trailing" constant="10" id="hMS-S6-O4s"/>
-                                    <constraint firstAttribute="bottom" secondItem="VLz-t0-mLR" secondAttribute="bottom" constant="10" id="iqR-a8-USj"/>
-                                    <constraint firstItem="wHI-Il-Jlw" firstAttribute="trailing" secondItem="aAX-zi-Dz9" secondAttribute="trailing" id="unH-fe-t0z"/>
+                                    <constraint firstItem="VLz-t0-mLR" firstAttribute="leading" secondItem="ziC-FN-DUa" secondAttribute="leading" constant="10" id="LdV-ad-OMJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="VLz-t0-mLR" secondAttribute="bottom" constant="10" id="QeU-WU-3hb"/>
                                     <constraint firstAttribute="trailing" secondItem="aAX-zi-Dz9" secondAttribute="trailing" constant="10" id="xGE-og-eRx"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ADT-TS-dXu"/>
+                                        <exclude reference="Jyb-5y-ZgX"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Jyb-5y-ZgX"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="ADT-TS-dXu"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWS-95-B96">
                                 <rect key="frame" x="0.0" y="796" width="414" height="100"/>
@@ -76,6 +101,7 @@
                             <constraint firstItem="ziC-FN-DUa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="9Qt-B0-mFm"/>
                             <constraint firstAttribute="bottom" secondItem="tWS-95-B96" secondAttribute="bottom" id="Ci3-vh-XAf"/>
                             <constraint firstAttribute="trailing" secondItem="c08-Qm-Nrl" secondAttribute="trailing" id="Pe8-W3-HzM"/>
+                            <constraint firstItem="tWS-95-B96" firstAttribute="top" secondItem="ziC-FN-DUa" secondAttribute="bottom" constant="20" id="QQX-Ns-qXq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="c08-Qm-Nrl" secondAttribute="top" constant="44" id="U01-AK-7lH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ziC-FN-DUa" secondAttribute="trailing" priority="750" constant="20" id="Z1f-rE-D6O"/>
                             <constraint firstItem="tWS-95-B96" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="d0d-KD-Sh0"/>
@@ -84,6 +110,17 @@
                             <constraint firstItem="c08-Qm-Nrl" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="34" id="zQv-h5-wCt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="QQX-Ns-qXq"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="Z1f-rE-D6O"/>
+                                <include reference="QQX-Ns-qXq"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="favoriteButton" destination="aAX-zi-Dz9" id="QKe-7u-SRf"/>
@@ -94,7 +131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.25" y="127.53623188405798"/>
+            <point key="canvasLocation" x="130.43478260869566" y="127.23214285714285"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="LM7-n0-RSZ">

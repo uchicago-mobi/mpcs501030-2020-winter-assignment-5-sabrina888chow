@@ -8,11 +8,13 @@
 
 import UIKit
 
+// https://cocoacasts.com/what-is-a-singleton-and-how-to-create-one-in-swift
 public class DataManager {
     // MARK: - Singleton Stuff
     public static let sharedInstance = DataManager()
     
-    var favoritePlaces: [Place] = []
+    var favoritePlaces: [String] = []
+    let favorites = UserDefaults.standard
     
     //This prevents others from using the default '()' initializer
     fileprivate init() {}
@@ -37,11 +39,11 @@ public class DataManager {
         var longDelta: Double?
     }
     
-    // Your code (these are just example functions, implement what you need)
-    
-    
+    // Working with UserDefaults
+    // https://learnappmaking.com/userdefaults-swift-setting-getting-data-how-to/
     // https://useyourloaf.com/blog/using-swift-codable-with-property-lists/
     func loadAnnotationFromPlist() -> [Place] {
+        // https://stackoverflow.com/questions/35118301/cant-get-plist-url-in-swift
         guard let dataURL = Bundle.main.path(forResource: "Data", ofType: "plist") else { return [] }
         var currentData: RootData?
         if let data = try? Data(contentsOf: URL(fileURLWithPath: dataURL)) {
@@ -86,27 +88,21 @@ public class DataManager {
         return location
     }
     
-    func saveFavorite(place: Place) {
-        let favorites = UserDefaults.standard
-        favorites.set(place, forKey: "\(String(describing: place.name))")
-        
-        /*let encoder = PropertyListEncoder()
-        encoder.outputFormat = .xml
-
-        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Data.plist")
-
-        do {
-            let data = try encoder.encode(favorites)
-            try data.write(to: path)
-        } catch {
-            print(error)
-        }*/
+    func saveFavorite(currentPlace: String) {
+        var current = favorites.array(forKey: "favorites") as? [String] ?? [String]()
+        current.append(currentPlace)
+        favorites.set(current, forKey: "favorites")
     }
     
-    func deleteFavorite(place: Place) {
-        let favorites = UserDefaults.standard
-        favorites.removeObject(forKey: "\(String(describing: place.name))")
+    func deleteFavorite(currentPlace: String) {
+        var current = favorites.array(forKey: "favorites") as? [String] ?? [String]()
+        if let index = current.firstIndex(of: currentPlace) {
+            current.remove(at: index)
+        }
+        favorites.set(current, forKey: "favorites")
     }
     
-    func listFavorites() {}
+    func listFavorites() -> [String] {
+        return favorites.array(forKey: "favorites") as? [String] ?? [String]()
+    }
 }
